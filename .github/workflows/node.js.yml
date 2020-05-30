@@ -46,7 +46,7 @@ jobs:
         with:
           args: --acl public-read
     env:
-      SOURCE_DIR: ./migrations-talk/
+      SOURCE_DIR: migrations-talk
       DEST_DIR: migrations-talk
       AWS_REGION: "ap-southeast-2"
       AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
