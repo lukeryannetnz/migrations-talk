@@ -254,7 +254,7 @@ gulp.task('package', gulp.series('default', () =>
         './images/**',
         './plugin/**',
         './**.md'
-    ]).pipe(zip('reveal-js-presentation.zip')).pipe(gulp.dest('./'))
+    ]).pipe(gulp.dest('./migrations-talk'))
 
 ))
 
