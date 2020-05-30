@@ -4,6 +4,8 @@
 
 This is a talk on migrations, what they are and how they enable teams to sustain  velocity and quality.
 
+The most recent version is published here https://lukeryan.net.nz/migrations-talk/
+
 ## this repo
 This is a slide deck created using <a href="https://revealjs.com/installation" style="font-size: 3em;">reveal.js</a>.
 
