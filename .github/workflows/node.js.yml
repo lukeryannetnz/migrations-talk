@@ -34,7 +34,7 @@ jobs:
           path: migrations-talk/
 
   deploy:
-    needs: package
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Download package
