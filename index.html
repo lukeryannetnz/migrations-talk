@@ -1,40 +1,219 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+        <title>migrations</title>
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+        <link rel="stylesheet" href="dist/reset.css">
+        <link rel="stylesheet" href="dist/reveal.css">
+        <link
+        rel="stylesheet" href="dist/theme/black.css" id="theme">
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+        <!-- Theme used for syntax highlighted code -->
+        <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+    </head>
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section data-markdown>
+                    <textarea data-template>
+						## migrations
+						
+						an enabler of sustainable velocity and high quality
+                    </textarea>
+				</section>
+				<section data-markdown>
+                    <textarea data-template>
+						# hello.
+						
+						I'm Luke
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+						## what is a migration?
+						
+						1. deploy new version iteratively
+						2. cut over via some strategy
+						3. decommission the old version
+					</textarea>
+					<aside class="notes">
+
+					</aside>
+				</section>
+				<section data-markdown>
+                    <textarea data-template>
+						### useful for all sorts of technical change on running systems
+						
+						
+						- data schema change
+						- infrastructure change
+						- code logic change
+					</textarea>
+					<aside class="notes">
+						Can be very large, or very small.
+					</aside>
+                </section>
+				<section data-markdown>
+                    <textarea data-template>
+						## cutover strategy: big bang
+
+						- in-place 
+						- blue/green
+
+						notes: this is the simplest, either deploy it in place or use a blue/green strategy where you deploy a new copy and immediately cut over to it
+					</textarea>
+				</section>
+				<section data-markdown>
+                    <textarea data-template>
+						## cutover strategy: phased
+
+						- canary
+						- rolling 
+
+						notes:
+						partition the change to reduce the blast radius of failure. examples of this are: 
+
+						deploying the new version to 1/n nodes ("canary"), observing then rolling to the rest
+
+						we used this strategy recently at Uneeq with an infrastructure migration, we operate data centers across 4 global regions. We migrated them one at a time to reduce the number of customers impacted if we made a mistake
+
+						At uneeq we pivoted from video calling to digital humans. We used this strategy recently at to remove an abstraction from our domain which no longer made sense. We used a multi-step, phased approach to the schema migration to ensure the applications were compatible and we avoided downtime.
+					</textarea>
+				</section>
+				<section data-markdown>
+                    <textarea data-template>
+						## cutover strategy: parallel
+
+						- feature flags
+						- A/B tests
+						- [scientist pattern](https://github.blog/2016-02-03-scientist/)
+
+						notes:
+						this is the least risky, but most expensive. it allows you to observe the old and new system running at the same time.
+
+						we have been doing this at uneeq lately with our digital human synthetic behavior, experimenting with different machine learning models
+					</textarea>
+				</section>
+                <section data-markdown>
+                    <textarea data-template>
+						## what are the alternatives?
+						
+						- deploy the change in place
+						- don't make the change and work around it
+
+						notes:
+						This all sounds like a lot of work. 
+						Do I have to do this?
+					</textarea>
+				</section>
+				<section data-markdown>
+                    <textarea data-template>
+						## there aren't really any alternatives
+						
+						- deploying the change in place is a migration with a big bang cutover
+						- not making the change is how we get system rot
+
+						notes:
+						Any change to a running, live system is a migration if you think of it that way
+					</textarea>
+				</section>
+				<section data-markdown>
+                    <textarea data-template>
+						> the code still works, but has gradually become complicated and hard to work with
+
+						https://henrikwarne.com/2017/04/28/code-rot/
+					</textarea>
+				</section>
+				<section data-markdown>
+                    <textarea data-template>
+						## symptoms
+						- very wide database tables
+						- names or abstractions that aren't correct but haven't been changed
+						- code comments which indicate code doesn't run, but the author is too afraid to delete it
+						- ...
+					</textarea>
+				</section>
+				<section data-markdown>
+                    <textarea data-template>
+						> Lean, spare, fast programs are almost always the result of strategic breakthrough, rather than tactical cleverness. [...] often, the breakthrough will come from redoing the representation of the data or tables. Representation is the essence of programming.
+
+						The Mythical Man-Month, Fred Brooks, 1975
+					</textarea>
+				</section>
+				<section data-markdown>
+                    <textarea data-template>
+						## building a culture which embraces migrations enables sustained velocity and quality
+
+						notes:
+						migrations are a way of making scary big changes safe.
+					</textarea>
+				</section>
+				<section data-markdown>
+                    <textarea data-template>
+						## your process, tooling or culture might prevent this by strongly preferring one cutover method
+
+						notes:
+						It's probably big bang. It might be phased. Whichever it is, your teams need to have the flexibility to chose an alternative approach if it makes sense. They need to have the tools to enable them to chose when to re-write a method and push it to production or when a new method should be executed in parallel with the old one and results compared for a period of time to iron out any risk of bugs.  
+						They need to be able to choose when it's the right time to do a database table migration via multiple steps to ensure uptime or when simply adding a new column is fine. 
+					</textarea>
+				</section>
+				<section data-markdown>
+                    <textarea data-template>
+						#### this sounds like a lot of up-front planning, is it agile?
+
+						> Continuous attention to technical excellence
+						and good design enhances agility. 
+
+						> Agile processes promote sustainable development.
+						The sponsors, developers, and users should be able
+						to maintain a constant pace indefinitely. 
+
+						https://agilemanifesto.org/principles.html
+
+						notes:
+						The agile manifesto outlines 12 principles. Two of them talk directly to the benefits migrations give.
+						Migrations can be executed incrementally.
+						Being able to safely make changes to the design of a system enables a team to adapt based on the feedback they get from production, users, the market...
+					</textarea>
+				</section>
+				<section data-markdown>
+                    <textarea data-template>
+						## don't forget the last step
+
+						- decommission the old version
+
+						notes:
+						this is often where the value is. cost to serve. less complexity. less to maintain. less to secure.
+					</textarea>
+				</section>
+				<section data-markdown>
+                    <textarea data-template>
+						thank you
+					</textarea>
+				</section>
+            </div>
+        </div>
+
+        <script src="dist/reveal.js"></script>
+        <script src="plugin/notes/notes.js"></script>
+        <script src="plugin/markdown/markdown.js"></script>
+        <script src="plugin/highlight/highlight.js"></script>
+        <script>
+            // More info about initialization & config:
+            // - https://revealjs.com/initialization/
+            // - https://revealjs.com/config/
+            Reveal.initialize({
+                hash: true,
+
+                // Learn about plugins: https://revealjs.com/plugins/
+                plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+            });
+        </script>
+    </body>
+
 </html>
