@@ -6,17 +6,13 @@ name: Node.js CI/CD
 on:
   push:
     branches: [master]
-  pull_request:
-    branches: [master]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [14.x]
-
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
@@ -44,7 +40,7 @@ jobs:
       - name: Upload package to S3 bucket
         uses: jakejarvis/s3-sync-action@v0.5.1
         with:
-          args: --acl public-read
+          args: --acl public-read --follow-symlinks
     env:
       SOURCE_DIR: migrations-talk
       DEST_DIR: migrations-talk
