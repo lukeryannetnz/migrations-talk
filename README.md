@@ -1,5 +1,5 @@
 # migrations-talk
-This is a talk on migrations, what they are and how they are a helpful construct for executing technical change. 
+This is a talk on migrations, what they are and how they enable teams to sustain  velocity and quality.
 
 ## this repo
 This is a slide deck created using <a href="https://revealjs.com/installation" style="font-size: 3em;">reveal.js</a>.
