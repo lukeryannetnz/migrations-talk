@@ -38,7 +38,6 @@ jobs:
         with:
           name: package-artifact
           path: package
-      - run: ls -l -R
       - name: Upload package to S3 bucket
         uses: jakejarvis/s3-sync-action@v0.5.1
         with:
