@@ -254,7 +254,7 @@ gulp.task('package', gulp.series('default', () =>
         './images/**',
         './plugin/**',
         './**.md'
-    ]).pipe(gulp.dest('./migrations-talk'))
+    ]).pipe(gulp.dest('./package'))
 
 ))
 
