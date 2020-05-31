@@ -250,7 +250,8 @@ gulp.task('package', gulp.series('default', () =>
     gulp.src([
         'index.html',
         '*dist/**/*',
-        '*plugin/**/*'
+        '*plugin/**/*',
+        '*images/**/*'
     ]).pipe(gulp.dest('./package'))
 
 ))
