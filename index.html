@@ -144,10 +144,31 @@
 				</section>
 				<section data-markdown>
                     <textarea data-template>
+						![data size v complexity](images/data-size-v-complexity.png)
+
+						[Jack Danger, 2019](https://medium.com/dangerous-engineering/a-reference-guide-for-fintech-small-data-engineering-bd65b9796d90)
+
+						notes:
+						If we’re building Twitter or Instagram we’ll need to process hexabytes of simple information. 
+						If we’re building Flexport or Gusto or even Square¹ we’ll be hard-pressed to even find terabytes of information.
+
+						There’s a huge set of companies that have small amounts of critical data in complex domains.
+
+						These companies have different problems than big daya companies. They have 4 things to focus on:
+						- Prioritizing domain model correctness over computational efficiency
+						- Refactoring the data model early and often
+						- Ensuring data is encrypted by default everywhere except in your product’s memory space
+						- Separating data by sensitivity (PHI, PII, PCI) to empower your Security team
+					</textarea>
+				</section>
+				<section data-markdown>
+                    <textarea data-template>
 						## building a culture which embraces migrations enables sustained velocity and quality
 
 						notes:
 						migrations are a way of making scary big changes safe.
+						having the confidence to make data model changes is key
+						one thing that stood out to me when I joined the uneeq team was the confidence with which they take on technical change.
 					</textarea>
 				</section>
 				<section data-markdown>
